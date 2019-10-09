@@ -1,11 +1,11 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
 USER 0
 SHELL ["/bin/bash","-c"]
-ENV WORKDIR /opt/app
 WORKDIR /opt/app
+ENV WORKDIR /opt/app
 ENV ASPNETCORE_ENVIRONMENT Development
 # Copy csproj and restore as distinct layers
-RUN echo `pwd` 
+RUN pwd 
 RUN mkdir -p $WORKDIR
 COPY *.csproj $WORKDIR
 RUN dotnet restore
@@ -17,6 +17,7 @@ RUN dotnet publish -c Release -o out
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
 USER 0
 RUN mkdir -p $WORKDIR
+RUN pwd
 COPY --from=build $WORKDIR .
 
 EXPOSE 8080 5001

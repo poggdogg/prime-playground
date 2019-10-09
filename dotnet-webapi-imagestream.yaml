@@ -13,6 +13,8 @@ spec:
       name: dotnet-webapi
     generation: null
     importPolicy: {}
+    referencePolicy:
+      type: Local 
     name: latest
 status:
   dockerImageRepository: ""
