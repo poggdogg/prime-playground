@@ -2,6 +2,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
 
 SHELL ["/bin/bash","-c"]
 WORKDIR /tmp
+ENV WORKDIR /tmp
 ENV ASPNETCORE_ENVIRONMENT Development
 
 # Copy csproj and restore as distinct layers
