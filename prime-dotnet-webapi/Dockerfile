@@ -6,7 +6,9 @@ ENV WORKDIR /opt/app
 ENV ASPNETCORE_ENVIRONMENT Development
 # Copy csproj and restore as distinct layers
 RUN pwd 
-RUN mkdir -p $WORKDIR
+RUN mkdir -p /opt;
+    mkdir -p /opt/app;
+
 COPY *.csproj $WORKDIR
 RUN dotnet restore
 
