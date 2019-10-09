@@ -15,7 +15,14 @@ spec:
       kind: ImageStreamTag
       name: dotnet-webapi:latest
   postCommit: {}
-  resources: {}
+  resources: 
+    requests:
+      cpu: "300m"
+      memory: "512Mi"
+    limits:
+      cpu: "1" 
+      memory: "1024Mi" 
+
   runPolicy: Serial
   source:
     contextDir: prime-dotnet-webapi/
