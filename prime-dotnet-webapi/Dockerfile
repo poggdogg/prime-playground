@@ -6,7 +6,7 @@ ENV WORKDIR /opt/app
 ENV ASPNETCORE_ENVIRONMENT Development
 # Copy csproj and restore as distinct layers
 RUN pwd 
-RUN mkdir -p /opt;
+RUN mkdir -p /opt; \
     mkdir -p /opt/app;
 
 COPY *.csproj $WORKDIR
@@ -19,7 +19,7 @@ RUN dotnet publish -c Release -o out
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
 USER 0
 RUN pwd 
-RUN mkdir -p /opt;
+RUN mkdir -p /opt; \
     mkdir -p /opt/app;
 COPY --from=build $WORKDIR .
 
