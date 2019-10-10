@@ -3,8 +3,9 @@ WORKDIR /home/prime
 ENV WORKDIR /home/prime
 ENV ASPNETCORE_ENVIRONMENT Development
 # Copy csproj and restore as distinct layers
+USER 0
 RUN useradd -m prime 
-RUN pwd
+RUN mkdir -p $WORKDIR
 COPY *.csproj $WORKDIR
 RUN dotnet restore
 # Copy everything else and build
