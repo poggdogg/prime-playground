@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
-WORKDIR /tmp/app
-ENV WORKDIR /tmp/app
+WORKDIR tmp
+ENV WORKDIR tmp
 ENV ASPNETCORE_ENVIRONMENT Development
 # Copy csproj and restore as distinct layers
 RUN mkdir -p $WORKDIR && \ 
