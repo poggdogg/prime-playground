@@ -5,7 +5,6 @@ ENV WORKDIR /opt/app-root/app
 ENV ASPNETCORE_ENVIRONMENT Development
 ENV PATH $PATH:/opt/rh/rh-dotnet22/root/usr/lib64/dotnet/
 # Copy csproj and restore as distinct layers
-RUN find / -type f -name dotnet
 RUN mkdir -p $WORKDIR
 COPY *.csproj $WORKDIR
 RUN dotnet restore
