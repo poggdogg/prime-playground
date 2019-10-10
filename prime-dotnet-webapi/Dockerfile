@@ -1,19 +1,28 @@
-FROM registry.redhat.io/dotnet/dotnet-22-rhel7 AS build
-#SHELL [ "/bin/bash","-c" ]
-WORKDIR /opt/app-root/app
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
+USER 0
+
+ENV WORKDIR /opt/app
+WORKDIR /opt/app
 ENV ASPNETCORE_ENVIRONMENT Development
-ENV PATH $PATH:/opt/rh/rh-dotnet22/root/usr/lib64/dotnet/:/opt/app-root/app/
+
 # Copy csproj and restore as distinct layers
-RUN mkdir -p /opt/app-root/app
-COPY *.csproj /opt/app-root/app
+RUN mkdir -p $WORKDIR
+COPY *.csproj $WORKDIR
 RUN dotnet restore
+
 # Copy everything else and build
-COPY . /opt/app-root/app
+COPY . $WORKDIR
 RUN dotnet publish -c Release -o out
 # Build runtime image
-FROM registry.redhat.io/dotnet/dotnet-22-runtime-rhel7 AS runtime
-COPY --from=build /opt/app-root/app .
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
+ENV WORKDIR /opt/app
+RUN mkdir -p $WORKDIR
+WORKDIR /opt/app
+COPY --from=build $WORKDIR/out .
+
 EXPOSE 8080 5001
+
+USER 1001
 ENV ASPNETCORE_ENVIRONMENT Development
-ENV PATH $PATH:/opt/rh/rh-dotnet22/root/usr/lib64/dotnet/:/opt/app-root/app/
-ENTRYPOINT ["dotnet prime.dll"]
+
+ENTRYPOINT ["/usr/bin/dotnet", "prime.dll"]
