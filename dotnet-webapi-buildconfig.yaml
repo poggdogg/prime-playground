@@ -40,7 +40,7 @@ spec:
         name: "aspnet:2.2"
       runtimeArtifacts: 
       - sourcePath: "."
-        destinationDir: "/tmp"
+        destinationDir: "/home/prime"
     type: Dockerfile
     dockerfile: {}
   triggers:
