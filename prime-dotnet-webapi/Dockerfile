@@ -18,4 +18,4 @@ COPY --from=build $WORKDIR .
 EXPOSE 8080 5001
 ENV ASPNETCORE_ENVIRONMENT Development
 
-ENTRYPOINT ["/usr/bin/dotnet", "prime.dll"]
+ENTRYPOINT ["/opt/rh/rh-dotnet22/root/usr/lib64/dotnet/dotnet", "prime.dll"]
