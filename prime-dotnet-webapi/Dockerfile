@@ -16,4 +16,4 @@ COPY --from=build /opt/app-root/app .
 EXPOSE 8080 5001
 ENV ASPNETCORE_ENVIRONMENT Development
 
-ENTRYPOINT ["/opt/rh/rh-dotnet22/root/usr/lib64/dotnet/dotnet", "prime.dll"]
+ENTRYPOINT ["/opt/rh/rh-dotnet22/root/usr/lib64/dotnet/dotnet", "/opt/app-root/app/prime.dll"]
