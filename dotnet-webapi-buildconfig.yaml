@@ -34,13 +34,11 @@ spec:
     dockerStrategy: 
       from:
         kind: "ImageStreamTag"
-        name: "sdk:2.2"
+        name: "dotnet-22-rhel7:latest"
       runtimeImage:
         kind: "ImageStreamTag"
-        name: "aspnet:2.2"
+        name: "dotnet-22-runtime-rhel7:latest"
       runtimeArtifacts: 
-      - sourcePath: "."
-        destinationDir: "/home/prime"
     type: Dockerfile
     dockerfile: {}
   triggers:
