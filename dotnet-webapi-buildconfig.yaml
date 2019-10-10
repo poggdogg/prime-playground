@@ -57,9 +57,9 @@ spec:
       RUN dotnet publish -c Release -o out
       # Build runtime image
       FROM aspnet:2.2 AS runtime
-      COPY --from=build $WORKDIR .
+      COPY --from=build /tmp .
       EXPOSE 8080 5001
-      ENV ASPNETCORE_ENVIRONMENT Development
+      ENV ASPNETCORE_ENVIRONMENT Development 
       ENTRYPOINT ["/usr/bin/dotnet", "prime.dll"]
 
   triggers:

@@ -12,7 +12,7 @@ COPY . $WORKDIR
 RUN dotnet publish -c Release -o out
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
-COPY --from=build $WORKDIR .
+COPY --from=build /tmp .
 
 EXPOSE 8080 5001
 ENV ASPNETCORE_ENVIRONMENT Development
