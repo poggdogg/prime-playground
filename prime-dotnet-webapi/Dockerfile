@@ -1,5 +1,5 @@
 FROM registry.redhat.io/dotnet/dotnet-22-rhel7 AS build
-SHELL [ "/bin/bash","-c" ]
+#SHELL [ "/bin/bash","-c" ]
 WORKDIR /opt/app-root/app
 ENV WORKDIR /opt/app-root/app
 ENV ASPNETCORE_ENVIRONMENT Development
