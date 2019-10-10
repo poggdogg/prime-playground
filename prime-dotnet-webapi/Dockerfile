@@ -4,6 +4,7 @@ WORKDIR /opt/app-root/app
 ENV WORKDIR /opt/app-root/app
 ENV ASPNETCORE_ENVIRONMENT Development
 # Copy csproj and restore as distinct layers
+RUN find / -type f -name dotnet
 RUN mkdir -p $WORKDIR
 COPY *.csproj $WORKDIR
 RUN dotnet restore
