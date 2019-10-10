@@ -34,10 +34,10 @@ spec:
     dockerStrategy: 
       from:
         kind: "ImageStreamTag"
-        name: "dotnet-22-rhel7:latest"
+        name: "registry.redhat.io/dotnet/dotnet-22-rhel7:latest"
       runtimeImage:
         kind: "ImageStreamTag"
-        name: "dotnet-22-runtime-rhel7:latest"
+        name: "registry.redhat.io/dotnet/dotnet-22-runtime-rhel7:latest"
       runtimeArtifacts: 
     type: Dockerfile
     dockerfile: {}

@@ -1,4 +1,4 @@
-FROM dotnet-22-rhel7 AS build
+FROM registry.redhat.io/dotnet/dotnet-22-rhel7 AS build
 SHELL [ "/bin/bash","-c" ]
 WORKDIR /opt/app-root/app
 ENV WORKDIR /opt/app-root/app
@@ -11,7 +11,7 @@ RUN dotnet restore
 COPY . $WORKDIR
 RUN dotnet publish -c Release -o out
 # Build runtime image
-FROM dotnet-22-runtime-rhel7 AS runtime
+FROM registry.redhat.io/dotnet/dotnet-22-runtime-rhel7 AS runtime
 COPY --from=build $WORKDIR .
 EXPOSE 8080 5001
 ENV ASPNETCORE_ENVIRONMENT Development
