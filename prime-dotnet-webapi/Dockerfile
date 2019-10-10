@@ -1,4 +1,5 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
+SHELL [ "/bin/bash","-c" ]
 WORKDIR /tmp/app
 ENV WORKDIR /tmp/app
 ENV ASPNETCORE_ENVIRONMENT Development
