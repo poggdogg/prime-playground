@@ -1,7 +1,7 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
+FROM dotnet-22-rhel7 AS build
 SHELL [ "/bin/bash","-c" ]
-WORKDIR /tmp/app
-ENV WORKDIR /tmp/app
+WORKDIR /opt/app-root/app
+ENV WORKDIR /opt/app-root/app
 ENV ASPNETCORE_ENVIRONMENT Development
 # Copy csproj and restore as distinct layers
 RUN mkdir -p $WORKDIR
@@ -11,12 +11,8 @@ RUN dotnet restore
 COPY . $WORKDIR
 RUN dotnet publish -c Release -o out
 # Build runtime image
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
+FROM dotnet-22-runtime-rhel7 AS runtime
 COPY --from=build $WORKDIR .
-RUN mkdir -p /opt/app
-RUN mv $WORKDIR /opt/app
-WORKDIR /opt/app
-ENV WORKDIR /opt/app
 EXPOSE 8080 5001
 ENV ASPNETCORE_ENVIRONMENT Development
 
